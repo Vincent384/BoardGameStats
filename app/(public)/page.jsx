@@ -4,6 +4,7 @@ import { getDownloadURL, listAll, ref } from 'firebase/storage'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
+import { CreateForm } from '../component/CreateForm'
 
 const Home = () => {
   const [image, setImage] = useState([])
@@ -37,6 +38,9 @@ const Home = () => {
               />
           </Link>
         }
+      </div>
+      <div className='flex justify-center items-center mt-2'>
+        <Link href={'form'}><button className='py-2 px-4 bg-slate-400 rounded-full text-white font-bold'>Create Form</button></Link>
       </div>
     </div>
   )
