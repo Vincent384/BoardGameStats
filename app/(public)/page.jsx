@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import { CreateForm } from '../component/CreateForm'
+import { Button } from '../component/Button'
 
 const Home = () => {
   const [image, setImage] = useState([])
@@ -40,7 +41,7 @@ const Home = () => {
         }
       </div>
       <div className='flex justify-center items-center mt-2'>
-        <Link href={'form'}><button className='py-2 px-4 bg-slate-400 rounded-full text-white font-bold'>Create Form</button></Link>
+        <Link href={'form'}><Button title={'Create Form'} color={'bg-slate-400'}/></Link>
       </div>
     </div>
   )
