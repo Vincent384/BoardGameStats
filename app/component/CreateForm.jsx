@@ -9,7 +9,7 @@ export const CreateForm = ({title,input,checkbox,value,name,handleChange,checked
     <div className='flex justify-between items-center m-3'>
                 <label className=''>{title}</label>
                 <input className={input} value={value} name={name} onChange={handleChange} type="text" />
-                <Checkbox className={checkbox} checked={checked} onChange={handleCheckboxChange}/>
+                <Checkbox className={checkbox} checked={checked} onCheckedChange={handleCheckboxChange} name={name}/>
     </div>
   )
 }
