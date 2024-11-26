@@ -18,6 +18,7 @@ const [form, setForm] = useState({
   input8:0,
   input9:0,
   input11:0,
+  name:''
 })
 
 const router = useRouter()
@@ -91,7 +92,8 @@ function calculateForm(){
     input8:Number(form.input8),
     input9:Number(form.input9),
     input11:Number(form.input11),
-    result:result
+    result:result,
+    name:form.name
   }
 
 }
@@ -105,10 +107,8 @@ const handleSubmit = async (e) =>{
     responseData
   })
 
-
-
   console.log(form)
-  // router.push('mageknight/stats')
+  router.push('mageknight/stats')
   
 }
   return (
@@ -117,19 +117,21 @@ const handleSubmit = async (e) =>{
         <form className='mt-5' onSubmit={handleSubmit}>
             <CreateForm title={'+15 if all cities were conquered'} name='checkbox1' input={'hidden'} checked={checkboxes.checkbox1} handleCheckboxChange={(checked) => handleCheckboxChange(checked,'checkbox1')} checkbox={''}/>
             <CreateForm title={'+5 if End of the Round was not announced on last Round'} name='checkbox2' input={'hidden'} checked={checkboxes.checkbox2} handleCheckboxChange={(checked) => handleCheckboxChange(checked,'checkbox2')} checkbox={''}/>
-            <CreateForm title={'+10 per conquered city'} name='input3' input={inputClass} handleChange={handleChange} checkbox={'hidden'}/>
-            <CreateForm title={'+30 for each unplayed Round'} name='input4' input={inputClass} handleChange={handleChange} checkbox={'hidden'}/>
-            <CreateForm title={'+1 per card remaining in Dummy player deck'} name='input5' input={inputClass} handleChange={handleChange} checkbox={'hidden'}/>
-            <CreateForm title={'The Greatest Knowledge'} name='input6' input={inputClass} handleChange={handleChange} checkbox={'hidden'}/>
-            <CreateForm title={'The Greatest Loot' } name='input7' input={inputClass} handleChange={handleChange} checkbox={'hidden'}/>
-            <CreateForm title={'The Greatest Leader'} name='input8' input={inputClass} handleChange={handleChange} checkbox={'hidden'}/>
-            <CreateForm title={'The Greatest Conqueror'} name='input9' input={inputClass} handleChange={handleChange} checkbox={'hidden'}/>
-            <CreateForm title={'The Greatest Beating'} name='input11' handleChange={handleChange} input={inputClass} checkbox={'hidden'}/>
+            <CreateForm title={'+10 per conquered city'} name='input3' input={inputClass} handleChange={handleChange} checkbox={'hidden'} type={'number'}/>
+            <CreateForm title={'+30 for each unplayed Round'} name='input4' input={inputClass} handleChange={handleChange} checkbox={'hidden'} type={'number'}/>
+            <CreateForm title={'+1 per card remaining in Dummy player deck'} name='input5' input={inputClass} handleChange={handleChange} checkbox={'hidden'} type={'number'}/>
+            <CreateForm title={'The Greatest Knowledge'} name='input6' input={inputClass} handleChange={handleChange} checkbox={'hidden'} type={'number'}/>
+            <CreateForm title={'The Greatest Loot' } name='input7' input={inputClass} handleChange={handleChange} checkbox={'hidden'} type={'number'}/>
+            <CreateForm title={'The Greatest Leader'} name='input8' input={inputClass} handleChange={handleChange} checkbox={'hidden'} type={'number'}/>
+            <CreateForm title={'The Greatest Conqueror'} name='input9' input={inputClass} handleChange={handleChange} checkbox={'hidden'} type={'number'}/>
+            <CreateForm title={'The Greatest Beating'} name='input11' handleChange={handleChange} input={inputClass} checkbox={'hidden'} type={'number'}/>
+            <CreateForm title={'Player'} name='name' handleChange={handleChange}
+             input={'appearance-none w-[150px] border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'}
+             checkbox={'hidden'} type={'text'}/>
             <div className='flex justify-center items-center mt-10'>
               <Button title={'Submit'} color={'bg-emerald-500'}/>
             </div>
         </form>
-        <p>{form.input12}</p>
     </div>
   )
 }
