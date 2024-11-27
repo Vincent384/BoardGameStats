@@ -18,6 +18,7 @@ const [form, setForm] = useState({
   input7:0,
   input8:0,
   input9:0,
+  input10:0,
   input11:0,
   name:''
 })
@@ -56,6 +57,7 @@ function calculateForm(){
    let in7 = Number(form.input7)
    let in8 = Number(form.input8)
    let in9 = Number(form.input9)
+   let in10 = Number(form.input10)
    let in11 =Number(form.input11)
 
   let checkbox1Result = 0
@@ -78,7 +80,7 @@ function calculateForm(){
     checkbox2Result = 0
   }
 
-  sum = in3 + in4 + in5 + in6 + in7 + in8 + in9 + checkbox1Result + checkbox2Result
+  sum = in3 + in4 + in5 + in6 + in7 + in8 + in9 + in10 + checkbox1Result + checkbox2Result
   console.log(sum)
   result = sum + in11
   console.log(result)
@@ -92,6 +94,7 @@ function calculateForm(){
     input7:Number(form.input7),
     input8:Number(form.input8),
     input9:Number(form.input9),
+    input10:Number(form.input10),
     input11:Number(form.input11),
     result:result,
     name:form.name
@@ -126,6 +129,7 @@ const handleSubmit = async (e) =>{
             <CreateForm title={'The Greatest Leader'} name='input8' input={inputClass} handleChange={handleChange} checkbox={'hidden'} type={'number'}/>
             <CreateForm title={'The Greatest Conqueror'} name='input9' input={inputClass} handleChange={handleChange} checkbox={'hidden'} type={'number'}/>
             <CreateForm title={'The Greatest Beating'} name='input11' handleChange={handleChange} input={inputClass} checkbox={'hidden'} type={'number'}/>
+            <CreateForm title={'Current score in play'} name='input10' handleChange={handleChange} input={inputClass} checkbox={'hidden'} type={'number'}/>
             <CreateForm title={'Player'} name='name' handleChange={handleChange}
              input={'appearance-none w-[150px] border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'}
              checkbox={'hidden'} type={'text'}/>

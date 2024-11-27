@@ -27,9 +27,9 @@ const Home = () => {
   
 
   return (
-    <div className=''>
-      <div className='flex justify-center items-center w-[200px] m-auto pt-10'>
-        { image && 
+    <div className='pt-12'>
+      <div className='flex justify-center items-center w-[200px] m-auto pt-12'>
+        { image.length > 0 && 
           <Link href={'mageknight/stats'}>
               <Image
                 src={image[0]}
@@ -40,8 +40,9 @@ const Home = () => {
           </Link>
         }
       </div>
-      <div className='flex justify-center items-center mt-2'>
-        <Link href={'form'}><Button title={'Create Form'} color={'bg-slate-400'}/></Link>
+      <div className='flex justify-center items-center mt-10'>
+        <Link href={'form'}><button className='py-4 px-6 text-2xl bg-slate-600 text-white rounded-full
+        font-semibold'>Create Form</button></Link>
       </div>
     </div>
   )
