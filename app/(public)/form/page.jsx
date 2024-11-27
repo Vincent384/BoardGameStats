@@ -5,6 +5,7 @@ import React, { useRef, useState } from 'react'
 import { addDoc, collection, doc, setDoc } from "firebase/firestore"; 
 import { db } from '@/firebase.config';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 
 
@@ -112,7 +113,7 @@ const handleSubmit = async (e) =>{
   
 }
   return (
-    <div>
+    <div className=''>
         <h1 className='m-auto w-[250px] pt-5 font-bold text-xl'>ACHIEVEMENT BONUSES</h1>
         <form className='mt-5' onSubmit={handleSubmit}>
             <CreateForm title={'+15 if all cities were conquered'} name='checkbox1' input={'hidden'} checked={checkboxes.checkbox1} handleCheckboxChange={(checked) => handleCheckboxChange(checked,'checkbox1')} checkbox={''}/>
@@ -131,6 +132,11 @@ const handleSubmit = async (e) =>{
             <div className='flex justify-center items-center mt-10'>
               <Button title={'Submit'} color={'bg-emerald-500'}/>
             </div>
+        <div className='flex justify-center py-5'>
+        <Link href={'/'}>
+          <button className='bg-blue-900 text-white py-10 px-12 text-4xl font-semibold rounded-full'>Back</button>
+        </Link>
+      </div>
         </form>
     </div>
   )

@@ -30,7 +30,7 @@ const Home = () => {
     <div className=''>
       <div className='flex justify-center items-center w-[200px] m-auto pt-10'>
         { image && 
-          <Link href={'mageknight'}>
+          <Link href={'mageknight/stats'}>
               <Image
                 src={image[0]}
                 width={320}
