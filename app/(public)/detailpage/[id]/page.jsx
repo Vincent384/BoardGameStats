@@ -54,7 +54,7 @@ const DetailPage = () => {
             </div>
             <div className='flex justify-center py-5'>
               <Link href={'/'}>
-                <button className='bg-blue-900 text-white py-10 px-12 text-4xl font-semibold rounded-full'>Back</button>
+                <button className='bg-blue-900 text-white py-10 px-12 text-3xl font-semibold rounded-full'>Back</button>
               </Link>
             </div>
           </form>

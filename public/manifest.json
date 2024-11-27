@@ -1,7 +1,7 @@
 {
-    "name": "VäderApp",
-    "short_name": "VäderApp",
-    "description": "Kolla väder",
+    "name": "Mage Knight",
+    "short_name": "Mage Knight",
+    "description": "Mage Knight stats",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
