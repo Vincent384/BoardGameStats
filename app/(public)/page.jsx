@@ -9,8 +9,7 @@ const Home = () => {
 
   return (
     <div className='pt-12'>
-      <div className='flex justify-center items-center w-[200px] m-auto pt-12'>
-  
+      <div className='flex justify-center  items-center w-[200px] m-auto pt-12'>
           <Link href={'mageknight/stats'}>
               <Image
                 src={icon}
