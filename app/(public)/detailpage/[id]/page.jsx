@@ -15,9 +15,16 @@ const DetailPage = () => {
 
   useEffect(() => {
     async function getData() {
-      const docRef = doc(db, "mageknight", `${id}`);
-      const docSnap = await getDoc(docRef);
-      setGetSingleDoc(docSnap.data())
+      try {
+        const res = await fetch(`http://localhost:3000/api/id-score/${id}`)
+
+        const data = await res.json()
+        console.log(data)
+        setGetSingleDoc(data)
+
+      } catch (error) {
+        
+      }
     }
     getData()
 

@@ -2,8 +2,6 @@
 import { Button } from '@/app/component/Button'
 import { CreateForm } from '@/app/component/CreateForm'
 import React, { useRef, useState } from 'react'
-import { addDoc, collection, doc, setDoc } from "firebase/firestore"; 
-import { db } from '@/firebase.config';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
@@ -45,8 +43,8 @@ const handleCheckboxChange = (checked,name) => {
     [name]:checked
   }));
 };
-
-function calculateForm(){
+ 
+async function calculateForm(){
  
     checkboxes.checkbox1
     checkboxes.checkbox2
@@ -105,14 +103,33 @@ function calculateForm(){
 const handleSubmit = async (e) =>{
   e.preventDefault()
   
-  const responseData = calculateForm()
-  console.log(checkboxes)
-  const sendData = await addDoc(collection(db,'mageknight',),{
-    responseData
-  })
+  const responseData = await calculateForm()
+  console.log(responseData)
+if(responseData){
+  try {
+    const res = await fetch('http://localhost:3000/api/score',{
+      method:'POST',
+      headers:{
+        'Content-type':'application/json'
+      },
+      body:JSON.stringify(responseData)
+    })
 
-  console.log(form)
-  router.push('mageknight/stats')
+    const data = await res.json()
+    console.log(data)
+
+    if(res.status === 201){
+      router.push('mageknight/stats')
+    }
+
+  } catch (error) {
+    console.log(error)
+  }
+  
+}
+
+
+
   
 }
   return (
