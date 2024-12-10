@@ -14,7 +14,7 @@ const DetailPage = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await fetch(`http://localhost:3000/api/id-score/?id=${id}`)
+        const res = await fetch(`http://board-game-stats.vercel.app/api/id-score/?id=${id}`)
 
         const data = await res.json()
         console.log(data)
@@ -34,7 +34,7 @@ const DetailPage = () => {
       id:id
     }
       try {
-        const res = await fetch('http://localhost:3000/api/score',{
+        const res = await fetch('http://board-game-stats.vercel.app/api/score',{
           method:'DELETE',
           headers:{
             'Content-type':'application/json'

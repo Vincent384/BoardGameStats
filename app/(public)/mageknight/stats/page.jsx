@@ -9,7 +9,7 @@ const [statList, setStatList] = useState(null)
     useEffect(() => {
       const getData = async () =>{
           try {
-            const res = await fetch('http://localhost:3000/api/score')
+            const res = await fetch('http://board-game-stats.vercel.app/api/score')
 
             const data = await res.json()
             console.log(data)
