@@ -5,7 +5,7 @@ import { NextResponse } from "next/server"
 
 
 export async function GET(){
-    connectMongoDb()
+   await connectMongoDb()
     try {
      const responseData = await UserList.find()
 
@@ -22,7 +22,7 @@ export async function GET(){
 }
 
 export async function POST(req){
-   connectMongoDb()
+  await connectMongoDb()
     try {
         
         const { checkbox1, checkbox2, input3, input4, input5, input6, input7, input8, input9, input10, input11, result, name } = await req.json();
@@ -63,7 +63,7 @@ export async function POST(req){
 }
 
 export async function DELETE(req){
-    connectMongoDb()
+   await connectMongoDb()
     try {
         const {id} = await req.json()
         console.log(id)
@@ -83,6 +83,6 @@ export async function DELETE(req){
         return NextResponse.json({message:'Objektet bort taget'},{status:200})
 
     } catch (error) {
-        
+     console.log(error)   
     }
 }

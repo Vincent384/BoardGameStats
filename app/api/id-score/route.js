@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 
 export async function GET(req){
-    connectMongoDb()
+   await connectMongoDb()
     try {
         
         const url = new URL(req.url)
@@ -20,6 +20,6 @@ export async function GET(req){
 
 
     } catch (error) {
-        
+        console.log(error)
     }
 }
