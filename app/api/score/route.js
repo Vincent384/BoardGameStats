@@ -17,7 +17,7 @@ export async function GET(){
      return NextResponse.json({message:'Lyckades hämta data',responseData},{status:200})
 
     } catch (error) {
-        console.log(error)
+        return NextResponse.json({ error: "Serverfel" }, { status: 500 });
     }
 }
 
@@ -58,7 +58,7 @@ export async function POST(req){
             return NextResponse.json({message:'Lyckades ladda upp',newScore},{status:201})
 
     } catch (error) {
-        console.log(error)
+        return NextResponse.json({ error: "Serverfel" }, { status: 500 });
     }
 }
 
@@ -83,6 +83,6 @@ export async function DELETE(req){
         return NextResponse.json({message:'Objektet bort taget'},{status:200})
 
     } catch (error) {
-     console.log(error)   
+        return NextResponse.json({ error: "Serverfel" }, { status: 500 }); 
     }
 }
