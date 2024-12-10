@@ -50,9 +50,9 @@ export async function POST(req){
             });
           }
 
-            userList.scores.push(newScore,newScore._id);
-          
-              await userList.save();    
+            userList.scores.push(newScore);
+            await userList.save();    
+            console.log(userList.scores)
 
 
             return NextResponse.json({message:'Lyckades ladda upp',newScore},{status:201})
@@ -66,16 +66,19 @@ export async function DELETE(req){
     connectMongoDb()
     try {
         const {id} = await req.json()
-
+        console.log(id)
         if(!id){
             return NextResponse.json({message:'Behöver ett id'},{status:400})
         }
 
-        const findAndDelete = await UserScore.deleteOne({_id:id})
+        const findAndDelete = await UserScore.findByIdAndDelete({_id:id})
 
         if(!findAndDelete){
             return NextResponse.json({message:`Hittade inte något med den ${id}`},{status:404})
         }
+
+        const listId = '6756e230f87ddd7f4defd80d'
+        await UserList.findByIdAndUpdate(listId,{$pull:{scores:{_id:id}}})
 
         return NextResponse.json({message:'Objektet bort taget'},{status:200})
 

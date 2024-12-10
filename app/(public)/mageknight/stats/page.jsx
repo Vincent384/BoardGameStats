@@ -1,6 +1,4 @@
 'use client'
-import { db } from '@/firebase.config'
-import { collection, getDocs } from 'firebase/firestore'
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 
@@ -37,8 +35,8 @@ const [statList, setStatList] = useState(null)
           statList && statList.map((array) => (
             array.map((item,index)=>((       
             <Link href={`/detailpage/${item._id}`} key={index}>
-              <div className='flex items-center gap-5 bg-slate-500 p-3 rounded-xl cursor-pointer'>
-                <span className='bg-emerald-600 p-2 rounded-full text-white font-semibold'>{item.name}</span>
+              <div className='flex items-center gap-5 bg-slate-500 w-[200px] text-center justify-center p-3 rounded-xl cursor-pointer'>
+                <span className='bg-emerald-600 p-2 rounded-full container text-white font-semibold'>{item.name}</span>
                 <span className='text-white font-semibold text-xl'>{item.result}</span>
               </div>            
             </Link>)))

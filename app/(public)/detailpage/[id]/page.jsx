@@ -1,8 +1,6 @@
 'use client'
 import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
-import { deleteDoc, doc, getDoc } from "firebase/firestore";
-import { db } from '@/firebase.config';
 import { CreateForm } from '@/app/component/CreateForm';
 import { Button } from '@/app/component/Button';
 import Link from 'next/link';
@@ -16,7 +14,7 @@ const DetailPage = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await fetch(`http://localhost:3000/api/id-score/${id}`)
+        const res = await fetch(`http://localhost:3000/api/id-score/?id=${id}`)
 
         const data = await res.json()
         console.log(data)
@@ -32,8 +30,28 @@ const DetailPage = () => {
 
   async function handleDelete(e) {
     e.preventDefault()
-        await deleteDoc(doc(db,'mageknight',`${id}`))
-        router.push('/')
+    const bodyData = {
+      id:id
+    }
+      try {
+        const res = await fetch('http://localhost:3000/api/score',{
+          method:'DELETE',
+          headers:{
+            'Content-type':'application/json'
+          },
+          body:JSON.stringify(bodyData)
+        })
+
+        const data = await res.json()
+        console.log(data)
+        if(res.status === 200){
+          router.push('/')
+        }
+
+      } catch (error) {
+        console.log(error)
+      }
+
   }
 
   return (
