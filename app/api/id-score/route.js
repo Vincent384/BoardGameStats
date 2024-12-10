@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 
 
 export async function GET(req){
-   await connectMongoDb()
     try {
+        await connectMongoDb()
         
         const url = new URL(req.url)
         const getId = url.searchParams.get('id')
@@ -22,4 +22,6 @@ export async function GET(req){
     } catch (error) {
         console.log(error)
     }
-}
+}  
+
+export const dynamic = "force-dynamic";
