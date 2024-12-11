@@ -1,17 +1,20 @@
 import mongoose from "mongoose"
 
 
-const MONGO_URI = process.env.MONGO_URI
 
-export const connectMongoDb = async () => {
-    try {
-        await mongoose.connect(MONGO_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log('Connected to MongoDb')
-    } catch (error) {
-        console.log(error)
-    }
+let isConnected = false;
+
+export async function connectMongoDb() {
+  if (isConnected) return; // Om redan ansluten, gör inget.
+  try {
+    console.log("Ansluter till MongoDB...");
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    isConnected = true;
+    console.log("Ansluten till MongoDB.");
+  } catch (error) {
+    console.error("Kunde inte ansluta till MongoDB:", error);
+  }
 }
-
