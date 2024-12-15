@@ -18,7 +18,25 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 const ChartDataPage = () => {
   const [chartData, setChartData] = useState(null); 
   const [scoreData, setScoreData] = useState(null); 
+  const [oldScoresWithNames,setOldScoresWithNames] = useState([{
+    name:'Goldyx',
+    score:'189'
+  },
+  {
+    name:'Wolfhawk',
+    score:'224'
+  },
+  {
+    name:'Arythea',
+    score:'187'
+  },
+  {
+    name:'Krang',
+    score:'243'
+  }])
+      
 
+  
   useEffect(() => {
     async function getData() {
       try {
@@ -37,36 +55,49 @@ const ChartDataPage = () => {
 
   useEffect(() => {
     if (scoreData) {
+      // Steg 1: Hämta namn och poäng från de dynamiska data
+      const labelsFromAPI = scoreData
+        .flat()
+        .map((item) => item.name); // Flat för att hantera flera poäng per användare
+      const scoresFromAPI = scoreData
+        .flat()
+        .map((item) => item.result);
 
-        const labels = scoreData.map((array) => array.map((item) => item.name));
-        const scores = scoreData.map((array) => array.map((score) => score.result));
+      // Steg 2: Slå samman de fasta värdena med de dynamiska värdena
+      const combinedNames = [
+        ...oldScoresWithNames.map((item) => item.name),
+        ...labelsFromAPI,
+      ];
+      const combinedScores = [
+        ...oldScoresWithNames.map((item) => item.score),
+        ...scoresFromAPI,
+      ];
 
-        const datasets = [
-            {
-              label: 'Score',
-              data: scores.flat(), // Flat för att hantera flera poäng per användare
-              backgroundColor: 'rgba(0, 0, 139, 0.7)',
-              borderColor: 'rgba(0, 0, 139, 1)',
-              borderWidth: 1,
-              datalabels: {
-                display: true,
-                align: 'center',
-                color: 'white',
-                font: {
-                  weight: 'bold',
-                },
-              }
+      // Steg 3: Skapa transformedData med de kombinerade värdena
+      const transformedData = {
+        labels: combinedNames,
+        datasets: [
+          {
+            label: 'Score',
+            data: combinedScores,
+            backgroundColor: 'rgba(0, 0, 139, 0.7)',
+            borderColor: 'rgba(0, 0, 139, 1)',
+            borderWidth: 1,
+            datalabels: {
+              display: true,
+              align: 'center',
+              color: 'white',
+              font: {
+                weight: 'bold',
+              },
             },
-        ];
+          },
+        ],
+      };
 
-        const transformedData = {
-          labels: labels.flat(), // Får användarnamn som etiketter
-          datasets,
-        };
-        
-        setChartData(transformedData);
+      setChartData(transformedData);
     }
-  }, [scoreData]);
+  }, [scoreData, oldScoresWithNames]);
 
   const options = {
     responsive: true,
