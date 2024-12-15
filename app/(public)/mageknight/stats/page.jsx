@@ -5,7 +5,23 @@ import React, { useEffect, useState } from 'react'
 const MageknightStats = () => {
 
 const [statList, setStatList] = useState(null)
-
+const oldScores = ['108','117','141','107','183','189','221','221','222','184']
+const oldScoresWithNames = [{
+  name:'Goldyx',
+  score:'189'
+},
+{
+  name:'Wolfhawk',
+  score:'224'
+},
+{
+  name:'Arythea',
+  score:'187'
+},
+{
+  name:'Krang',
+  score:'243'
+}]
     useEffect(() => {
       const getData = async () =>{
           try {
@@ -30,7 +46,21 @@ const [statList, setStatList] = useState(null)
       <div className='flex flex-col justify-between min-h-screen pt-10'>
       <div className='flex flex-col justify-center gap-5 items-center'>
         <h1 className='text-3xl'>Summering av spelen</h1>
-        
+           {
+            oldScores.map((item)=>(
+              <div className='flex items-center gap-5 bg-black w-[200px] text-center justify-center p-3 rounded-xl cursor-pointer'>
+              <span className='text-white font-semibold text-xl'>{item}</span>
+            </div>          
+            ))
+           }
+           {
+            oldScoresWithNames.map((item)=>(
+              <div className='flex items-center gap-5 bg-black w-[200px] text-center justify-center p-3 rounded-xl cursor-pointer'>
+              <span className='bg-emerald-600 p-2 rounded-full container text-white font-semibold'>{item.name}</span>
+              <span className='text-white font-semibold text-xl'>{item.score}</span>
+            </div>     
+            ))
+           }
       {
           statList && statList.map((array) => (
             array.map((item,index)=>((       

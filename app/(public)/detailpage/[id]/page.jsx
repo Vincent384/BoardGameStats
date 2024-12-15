@@ -78,7 +78,7 @@ const DetailPage = () => {
               <Button title={'Delete'} color={'bg-red-500'} />
             </div>
             <div className='flex justify-center py-5'>
-              <Link href={'/'}>
+              <Link href={'/mageknight/stats'}>
                 <button className='bg-blue-900 text-white px-8 py-2 text-3xl font-semibold rounded-full'>Back</button>
               </Link>
             </div>

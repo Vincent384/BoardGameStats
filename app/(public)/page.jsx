@@ -21,6 +21,10 @@ const Home = () => {
         
       </div>
       <div className='flex justify-center items-center mt-10'>
+        <Link href={'chart'}><button className='py-4 px-6 text-2xl bg-slate-600 text-white rounded-full
+        font-semibold'>Chart</button></Link>
+      </div>      
+      <div className='flex justify-center items-center mt-10'>
         <Link href={'form'}><button className='py-4 px-6 text-2xl bg-slate-600 text-white rounded-full
         font-semibold'>Create Form</button></Link>
       </div>
