@@ -62,6 +62,43 @@ export async function POST(req){
     }
 }
 
+export async function PUT(){
+    try {
+        await connectMongoDb()
+
+        const { checkbox1, checkbox2, input3, input4, input5, input6, input7, input8, input9, input10, input11, result, name,id } = await req.json();
+
+        const updateScore = {
+            checkbox1:checkbox1,
+            checkbox2:checkbox2,
+            input3:input3,
+            input4:input4,
+            input6:input6,
+            input7:input7,
+            input8:input8,
+            input9:input9,
+            input10:input10,
+            input11:input11,
+            result:result,
+            name:name
+        }
+
+
+       const findAndUpdateScore = await UserScore.findByIdAndUpdate(id,updateScore)
+
+       if(!findAndUpdateScore){
+        return NextResponse.json({message:'Kunde inte uppdatera'},{status:404})
+       }
+
+       return NextResponse.json({message:'Uppdateringen lyckades'},{status:200})
+
+    } catch (error) {
+        console.log(error)
+    }
+
+
+}
+
 export async function DELETE(req){
    await connectMongoDb()
     try {

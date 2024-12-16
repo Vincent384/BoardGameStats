@@ -161,7 +161,7 @@ const ChartDataPage = () => {
         <p>Loading chart...</p>
       )}
       <div className="flex justify-center items-center mt-10">
-        <Link href="/">
+        <Link href="/mageknight/stats">
           <button className="bg-blue-900 text-white px-8 py-2 text-3xl font-semibold rounded-full">Back</button>
         </Link>
       </div>

@@ -25,7 +25,7 @@ const oldScoresWithNames = [{
     useEffect(() => {
       const getData = async () =>{
           try {
-            const res = await fetch('https://board-game-stats.vercel.app/api/score')
+            const res = await fetch('http://localhost:3000/api/score')
 
             const data = await res.json()
             console.log(data)
@@ -46,6 +46,10 @@ const oldScoresWithNames = [{
       <div className='flex flex-col justify-between min-h-screen pt-10'>
       <div className='flex flex-col justify-center gap-5 items-center'>
         <h1 className='text-3xl'>Summering av spelen</h1>
+        <div className='flex justify-center items-center'>
+        <Link href={'/mageknight/stats/chart'}><button className='py-4 px-6 w-[200px] text-2xl container bg-slate-600 text-white rounded-full
+        font-semibold'>Chart</button></Link>
+      </div>      
            {
             oldScores.map((item)=>(
               <div className='flex items-center gap-5 bg-black w-[200px] text-center justify-center p-3 rounded-xl cursor-pointer'>
