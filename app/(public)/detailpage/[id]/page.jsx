@@ -9,6 +9,7 @@ const DetailPage = () => {
   const inputClass = 'appearance-none w-[70px] text-center border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'
     const router = useRouter()
   const { id } = useParams()
+  const [isLoading, setIsLoading] = useState(true)
   const [getSingleDoc, setGetSingleDoc] = useState({
     input3:0,
     input4:0,
@@ -33,14 +34,16 @@ const DetailPage = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await fetch(`http://localhost:3000/api/id-score/?id=${id}`)
+        const res = await fetch(`https://board-game-stats.vercel.app/api/id-score/?id=${id}`)
 
         const data = await res.json()
         const newBody = await data.responseData
         setGetSingleDoc(newBody)
         setCheckboxes({checkbox1:newBody.checkbox1,checkbox2:newBody.checkbox2})
+        setIsLoading(false)
       } catch (error) {
         console.log(error)
+        setIsLoading(false)
       }
     }
     getData()
@@ -53,7 +56,7 @@ const DetailPage = () => {
       id:id
     }
       try {
-        const res = await fetch('http://localhost:3000/api/score',{
+        const res = await fetch('https://board-game-stats.vercel.app/api/score',{
           method:'DELETE',
           headers:{
             'Content-type':'application/json'
@@ -140,7 +143,8 @@ const DetailPage = () => {
     input10:Number(getSingleDoc.input10),
     input11:Number(getSingleDoc.input11),
     result:result,
-    name:getSingleDoc.name
+    name:getSingleDoc.name,
+    id:id
   }
 
 }
@@ -152,7 +156,7 @@ const DetailPage = () => {
     console.log(responseData)
 
     try {
-      const res = await fetch('http://localhost:3000/api/score',{
+      const res = await fetch('https://board-game-stats.vercel.app/api/score',{
         method:'PUT',
         headers:{
           'Content-type':'application/json'
@@ -167,6 +171,9 @@ const DetailPage = () => {
         setSuccessMessage('Lyckades uppdatera')
       }
 
+      setTimeout(() => {
+        router.push('/mageknight/stats')
+      }, 1000);
 
     } catch (error) {
       console.log(error)
@@ -175,7 +182,8 @@ const DetailPage = () => {
 
   return (
     <div>
-      <div className=''>
+      {
+        isLoading ? <p className='text-center text-xl'>Laddar...</p>  :  <div className=''>
         <h1 className='m-auto w-[250px] pt-5 font-bold text-xl'>ACHIEVEMENT BONUSES</h1>
         {getSingleDoc &&
           <form className='mt-5'>
@@ -193,15 +201,16 @@ const DetailPage = () => {
             <CreateForm title={'Player'} name='name' defaultValue={getSingleDoc.name} handleChange={handleChange}
               input={'appearance-none w-[150px] border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500'}
               checkbox={'hidden'} type={'text'} />
-            <div className='flex justify-around items-center mt-10 mb-5'>
+            <div className='flex justify-around relative items-center mt-10 mb-5'>
+            {
+                successMessage !== '' ? 
+                <p className='absolute top-[60px] left-1/2 -translate-x-1/2 -translate-y-1/2 py-2 px-4 rounded-full bg-green-700 text-white font-bold'>{successMessage}</p> : ''
+              }
               <button onClick={handleDelete} className='py-2 px-4 bg-red-500 rounded-full text-white font-semibold text-xl'>Delete</button>
               <button onClick={handleUpdate} className='py-2 px-4 bg-orange-500 rounded-full text-white font-semibold text-xl' >Update</button>
             </div>
-            <div className='flex justify-center py-5 relative'>
-              {
-                successMessage !== '' ? 
-                <p className='absolute top-0 left-0 py-2 px-4 bg-green-700 text-white font-bold'>{successMessage}</p> : ''
-              }
+            <div className='flex justify-center py-5'>
+ 
               <Link href={'/mageknight/stats'}>
                 <button className='bg-blue-900 text-white px-8 py-2 text-3xl font-semibold rounded-full'>Back</button>
               </Link>
@@ -209,6 +218,8 @@ const DetailPage = () => {
           </form>
         }
       </div>
+      }
+    
     </div>
   )
 }

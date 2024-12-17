@@ -25,7 +25,7 @@ const oldScoresWithNames = [{
     useEffect(() => {
       const getData = async () =>{
           try {
-            const res = await fetch('http://localhost:3000/api/score')
+            const res = await fetch('https://board-game-stats.vercel.app/api/score')
 
             const data = await res.json()
             console.log(data)
@@ -51,15 +51,15 @@ const oldScoresWithNames = [{
         font-semibold'>Chart</button></Link>
       </div>      
            {
-            oldScores.map((item)=>(
-              <div className='flex items-center gap-5 bg-black w-[200px] text-center justify-center p-3 rounded-xl cursor-pointer'>
+            oldScores.map((item,index)=>(
+              <div key={index} className='flex items-center gap-5 bg-black w-[200px] text-center justify-center p-3 rounded-xl cursor-pointer'>
               <span className='text-white font-semibold text-xl'>{item}</span>
             </div>          
             ))
            }
            {
-            oldScoresWithNames.map((item)=>(
-              <div className='flex items-center gap-5 bg-black w-[200px] text-center justify-center p-3 rounded-xl cursor-pointer'>
+            oldScoresWithNames.map((item,index)=>(
+              <div key={index} className='flex items-center gap-5 bg-black w-[200px] text-center justify-center p-3 rounded-xl cursor-pointer'>
               <span className='bg-emerald-600 p-2 rounded-full container text-white font-semibold'>{item.name}</span>
               <span className='text-white font-semibold text-xl'>{item.score}</span>
             </div>     

@@ -62,7 +62,7 @@ export async function POST(req){
     }
 }
 
-export async function PUT(){
+export async function PUT(req){
     try {
         await connectMongoDb()
 
@@ -73,6 +73,7 @@ export async function PUT(){
             checkbox2:checkbox2,
             input3:input3,
             input4:input4,
+            input5:input5,
             input6:input6,
             input7:input7,
             input8:input8,
@@ -82,13 +83,35 @@ export async function PUT(){
             result:result,
             name:name
         }
-
-
+   
        const findAndUpdateScore = await UserScore.findByIdAndUpdate(id,updateScore)
-
+     
        if(!findAndUpdateScore){
         return NextResponse.json({message:'Kunde inte uppdatera'},{status:404})
        }
+
+      const userListId = '6756e230f87ddd7f4defd80d'
+
+      const userList = await UserList.findById(userListId);
+  
+      if (!userList) {
+        return NextResponse.json({ message: 'User list not found' }, { status: 404 });
+      }
+  
+
+      const index = userList.scores.findIndex((score) => score._id.toString() === id);
+  
+      if (index === -1) {
+        return NextResponse.json({ message: 'Score not found in user list' }, { status: 404 });
+      }
+  
+  
+      userList.scores[index] = { ...updateScore, _id: id };
+  
+  
+      await userList.save();
+
+      console.log(userList)
 
        return NextResponse.json({message:'Uppdateringen lyckades'},{status:200})
 

@@ -107,7 +107,7 @@ const handleSubmit = async (e) =>{
   console.log(responseData)
 if(responseData){
   try {
-    const res = await fetch('http://localhost:3000/api/score',{
+    const res = await fetch('https://board-game-stats.vercel.app/api/score',{
       method:'POST',
       headers:{
         'Content-type':'application/json'
