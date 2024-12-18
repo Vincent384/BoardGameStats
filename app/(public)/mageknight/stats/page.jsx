@@ -25,7 +25,7 @@ const oldScoresWithNames = [{
     useEffect(() => {
       const getData = async () =>{
           try {
-            const res = await fetch(`https://board-game-stats.vercel.app/api/score`)
+            const res = await fetch('https://board-game-stats.vercel.app/api/score')
 
             const data = await res.json()
             console.log(data)
