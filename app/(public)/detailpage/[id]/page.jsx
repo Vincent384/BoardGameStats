@@ -34,7 +34,7 @@ const DetailPage = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await fetch(`https://board-game-stats.vercel.app/api/id-score/?id=${id}`)
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/id-score?id=${id}`)
 
         const data = await res.json()
         const newBody = await data.responseData
@@ -56,7 +56,7 @@ const DetailPage = () => {
       id:id
     }
       try {
-        const res = await fetch('https://board-game-stats.vercel.app/api/score',{
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/score`,{
           method:'DELETE',
           headers:{
             'Content-type':'application/json'
@@ -156,7 +156,7 @@ const DetailPage = () => {
     console.log(responseData)
 
     try {
-      const res = await fetch('https://board-game-stats.vercel.app/api/score',{
+      const res = await fetch(`${process.env.NEXT_PUBLIC_URL}api/score`,{
         method:'PUT',
         headers:{
           'Content-type':'application/json'
