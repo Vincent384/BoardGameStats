@@ -5,8 +5,8 @@ import { NextResponse } from "next/server"
 
 
 export async function GET(){
-   await connectMongoDb()
     try {
+        await connectMongoDb()
      const responseData = await UserList.find()
 
      if(!responseData){
@@ -22,8 +22,8 @@ export async function GET(){
 }
 
 export async function POST(req){
-  await connectMongoDb()
     try {
+        await connectMongoDb()
         
         const { checkbox1, checkbox2, input3, input4, input5, input6, input7, input8, input9, input10, input11, result, name } = await req.json();
 
@@ -63,8 +63,8 @@ export async function POST(req){
 }
 
 export async function PUT(req){
-    await connectMongoDb()
     try {
+        await connectMongoDb()
 
         const { checkbox1, checkbox2, input3, input4, input5, input6, input7, input8, input9, input10, input11, result, name,id } = await req.json();
 
@@ -123,8 +123,8 @@ export async function PUT(req){
 }
 
 export async function DELETE(req){
-   await connectMongoDb()
     try {
+        await connectMongoDb()
         const {id} = await req.json()
         console.log(id)
         if(!id){
