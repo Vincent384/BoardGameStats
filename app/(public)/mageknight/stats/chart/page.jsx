@@ -40,7 +40,7 @@ const ChartDataPage = () => {
   useEffect(() => {
     async function getData() {
       try {
-        const res = await fetch(`https://board-game-stats.vercel.app/api/score`);
+        const res = await fetch('https://board-game-stats.vercel.app/api/score');
         const data = await res.json();
 
         const filterArray = data.responseData.map((item) => item.scores); 
